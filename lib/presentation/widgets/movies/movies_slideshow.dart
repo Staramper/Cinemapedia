@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:card_swiper/card_swiper.dart';
-import 'package:animate_do/animate_do.dart';
+// import 'package:animate_do/animate_do.dart';
 
 class MoviesSlideshow extends StatelessWidget {
 
@@ -68,14 +68,14 @@ class _Slide extends StatelessWidget {
           child: Image.network(
             movie.backdropPath,
             fit: BoxFit.cover,
-            loadingBuilder: (context, child, loadingProgress) {
-              if ( loadingProgress != null ){
-                return const DecoratedBox(
-                  decoration: BoxDecoration(color: Colors.black12)
-                  );    
-              }
-              return FadeIn(child: child);
-            },
+            // loadingBuilder: (context, child, loadingProgress) {
+            //   if ( loadingProgress != null ){
+            //     return const DecoratedBox(
+            //       decoration: BoxDecoration(color: Colors.black12)
+            //       );    
+            //   }
+            //   return FadeIn(child: child);
+            // },
           ),
           )
         ),
