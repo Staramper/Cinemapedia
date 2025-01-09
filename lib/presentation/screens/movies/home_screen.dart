@@ -31,30 +31,74 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     super.initState();
 
     ref.read(nowPlayingMoviesProvider.notifier).loadNewPage();
+    ref.read(popularMoviesProvider.notifier).loadNewPage();
   }
 
   @override
   Widget build(BuildContext context) {
 
-    final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final slideShowMovies = ref.watch(moviesSlideshowProvider);
+    final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    final popularMovies = ref.watch(popularMoviesProvider);
 
     // if ( nowPlayingMovies.isEmpty ) return const CircularProgressIndicator();
 
-    return Column(
-      children: [
+    return CustomScrollView(
+      slivers: [
 
-        const CustomAppbar(),
-
-        MoviesSlideshow(movies: slideShowMovies),
-
-        MoviesHorizontalListview(
-          movies: nowPlayingMovies,
-          title: 'En Cines',
-          subTitle: 'Viernes 13',
-          loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNewPage(),
+        const SliverAppBar(
+          floating: true,
+          flexibleSpace: FlexibleSpaceBar(
+            title: CustomAppbar(),
+            titlePadding: EdgeInsets.symmetric(horizontal: 10),
           ),
-      ],
+        ),
+
+        SliverList(delegate: SliverChildBuilderDelegate(
+          (context, index) {
+            return Column(
+              children: [
+            
+                // const CustomAppbar(),
+            
+                MoviesSlideshow(movies: slideShowMovies),
+            
+                MoviesHorizontalListview(
+                  movies: nowPlayingMovies,
+                  title: 'En Cines',
+                  subTitle: 'Viernes 13',
+                  loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNewPage(),
+                  ),
+            
+                MoviesHorizontalListview(
+                  movies: nowPlayingMovies,
+                  title: 'Proximamente',
+                  subTitle: 'En este mes',
+                  loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNewPage(),
+                  ),
+                
+                MoviesHorizontalListview(
+                  movies: popularMovies,
+                  title: 'Populares',
+                  // subTitle: '',
+                  loadNextPage: () => ref.read(popularMoviesProvider.notifier).loadNewPage(),
+                  ),
+                
+                MoviesHorizontalListview(
+                  movies: nowPlayingMovies,
+                  title: 'Mejor calificadas',
+                  subTitle: 'De todos los tiempos',
+                  loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNewPage(),
+                  ),
+
+                  const SizedBox(height: 10),
+              ],
+            );
+          },
+          childCount: 1,
+        ))
+
+      ]
     );
   }
 }
