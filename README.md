@@ -1,6 +1,6 @@
-# cinemapedia
+# Cinemapedia
 
 # Dev
 
-1. Copiar el .env.template y renombrarlo a .env
-2. Cambiar la variable de entorno (THE_MOVIEDB_KEY)
+1. Copy the .env.template and rename it to .env
+2. Change the environment variable (THE_MOVIEDB_KEY)
