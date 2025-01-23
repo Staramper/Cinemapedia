@@ -1,5 +1,7 @@
-import 'package:cinemapedia/config/helpers/human_formats.dart';
 import 'package:flutter/material.dart';
+// import 'package:cinemapedia/config/router/app_router.dart';
+import 'package:go_router/go_router.dart';
+import 'package:cinemapedia/config/helpers/human_formats.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 
@@ -107,7 +109,10 @@ class _Slide extends StatelessWidget {
                       child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
                     );
                   }
-                  return FadeIn(child: child);
+                  return GestureDetector(
+                    onTap: () => context.push('/movie/${movie.id}'),
+                    child: FadeIn(child: child),
+                  );
                 },
               ),
             ),
