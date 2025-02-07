@@ -1,8 +1,10 @@
+// import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:cinemapedia/presentation/screens/screens.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/home/0', 
+  // errorBuilder: (context, state) => const NotFoundScreen(),
   routes: [
 
     GoRoute(
@@ -30,7 +32,9 @@ final appRouter = GoRouter(
       GoRoute(
         path: '/',
         redirect: ( _ , __ ) => '/home/0',
-        )
+      ),
+
+      
 
   ]
   );
