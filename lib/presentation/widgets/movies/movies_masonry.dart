@@ -60,13 +60,13 @@ class _MoviesMasonryState extends State<MoviesMasonry> {
           if (index == 1){
             return Column(
               children: [
-                const SizedBox(height: 40),
-                MoviePosterLink( movie: movie),
+                const SizedBox(height: 30),
+                MoviePosterLink(movie: movie),
               ],
             );
           }
       
-          return MoviePosterLink( movie: movie);
+          return MoviePosterLink(movie: movie);
        
         },
       ),

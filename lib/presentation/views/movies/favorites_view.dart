@@ -11,7 +11,7 @@ class FavoriteView extends ConsumerStatefulWidget {
   FavoriteViewState createState() => FavoriteViewState();
 }
 
-class FavoriteViewState extends ConsumerState<FavoriteView> {
+class FavoriteViewState extends ConsumerState<FavoriteView> with AutomaticKeepAliveClientMixin {
 
   bool isLoanding = false;
   bool isLastPage = false;
@@ -44,6 +44,7 @@ class FavoriteViewState extends ConsumerState<FavoriteView> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
 
     final favoriteMovies = ref.watch(faviteMoviesProvider).values.toList();
 
@@ -57,7 +58,7 @@ class FavoriteViewState extends ConsumerState<FavoriteView> {
           children: [
             Icon(Icons.favorite_border, size: 60, color: colors.primary),
             Text('Ohhh no!!', style: TextStyle( fontSize: 30, color: colors.primary )),
-            const Text('No tienes peliculas favoritas :(', style: TextStyle( fontSize: 20, color: Colors.black54)),
+            const Text('No tienes peliculas favoritas :(', style: TextStyle( fontSize: 20)),
 
             const SizedBox(height: 20),
             
@@ -79,4 +80,7 @@ class FavoriteViewState extends ConsumerState<FavoriteView> {
         )
     );
   }
+  
+  @override
+  bool get wantKeepAlive => true;
 }
